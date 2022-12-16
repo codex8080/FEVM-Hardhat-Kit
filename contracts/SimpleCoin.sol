@@ -10,12 +10,11 @@ contract SimpleCoin {
         uint256 private i_tokensToBeMinted;
 
 
-        constructor() {
-            i_tokensToBeMinted= 500000;
-            balances[tx.origin] = i_tokensToBeMinted;
-                
+        constructor(uint256 tokensToBeMinted) {
+                balances[tx.origin] = tokensToBeMinted;
+                i_tokensToBeMinted= tokensToBeMinted;
         }
-
+        
         function sendCoin(address receiver, uint amount) public returns(bool sufficient) {
                 if (balances[msg.sender] < amount) {
                 // return false;
