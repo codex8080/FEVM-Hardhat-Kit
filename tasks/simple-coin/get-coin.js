@@ -36,13 +36,13 @@ task("get-coin", "Sends SimpleCoin")
       }
 
     const simpleCoinContract = new ethers.Contract(contractAddr, SimpleCoin.interface, signer)
-    console.log("Sending:", amount, "SimpleCoin to", toAccount)
-    await simpleCoinContract.sendCoin(toAccount, amount, {
+    console.log("Sending:", amount, "FIL to", toAccount)
+    await simpleCoinContract.fromContract(toAccount, amount, {
         gasLimit: 1000000000,
         maxPriorityFeePerGas: priorityFee
     })
-    let result = BigInt(await simpleCoinContract.getBalance(toAccount)).toString()
-    console.log("Total SimpleCoin at:", toAccount, "is", result)
+    let result = BigInt(await simpleCoinContract.getBalanceOf(toAccount)).toString()
+    console.log("Total FIL at:", toAccount, "is", result)
 })
 
 module.exports = {}
